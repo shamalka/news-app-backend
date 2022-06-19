@@ -1,5 +1,6 @@
 import express from 'express';
 import mongoose from "mongoose";
+import authRoutes from "./routes/authRoutes.js"
 import userRoutes from "./routes/userRoutes.js"
 
 const app = express();
@@ -8,7 +9,7 @@ const app = express();
 app.use(express.json({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 
-const dbString = ""
+const dbString = "mongodb+srv://newsapp-backend:U82TbQJRuEnXHKr@news-app-backend-cluste.kg8jws7.mongodb.net/news-app-db?retryWrites=true&w=majority"
 
 const connectionParams = {
     useNewUrlParser: true,
@@ -21,6 +22,7 @@ mongoose.connect(dbString, connectionParams).then(() => {
     console.error("Error connecting to Mongodb database..")
 })
 
-app.use(userRoutes);
+app.use('/users', userRoutes);
+app.use('/auth', authRoutes);
 
 export default app;
