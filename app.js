@@ -13,6 +13,8 @@ app.use(express.urlencoded({ extended: true }));
 
 const dbString = process.env.MONGODB_ATALS_CONNECTION_STRING
 
+console.log(dbString)
+
 const connectionParams = {
     useNewUrlParser: true,
     useUnifiedTopology: true
