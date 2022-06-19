@@ -2,6 +2,8 @@ import express from 'express';
 import mongoose from "mongoose";
 import authRoutes from "./routes/authRoutes.js"
 import userRoutes from "./routes/userRoutes.js"
+import dotenv from 'dotenv'
+dotenv.config()
 
 const app = express();
 
@@ -9,7 +11,7 @@ const app = express();
 app.use(express.json({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 
-const dbString = "mongodb+srv://newsapp-backend:U82TbQJRuEnXHKr@news-app-backend-cluste.kg8jws7.mongodb.net/news-app-db?retryWrites=true&w=majority"
+const dbString = process.env.MONGODB_ATALS_CONNECTION_STRING
 
 const connectionParams = {
     useNewUrlParser: true,
