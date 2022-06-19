@@ -11,11 +11,8 @@ const login = async (req, res, next) => {
         res.status(400).send("User not found")
     } else {
         try {
-            console.log("try")
             if (await bcrypt.compare(req.body.password, user.password)) {
-                console.log("password hash matched")
                 const accessToken = jwt.sign(userObj, process.env.ACCESS_TOKEN_SECRET, {expiresIn:'1h'});
-                console.log(accessToken)
                 res.status(200).send({accessToken:accessToken});
             } else {
                 res.status(401).send("User unauthorized");
